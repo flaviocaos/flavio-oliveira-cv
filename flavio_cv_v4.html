@@ -1,0 +1,1229 @@
+<title>Flávio Oliveira — AI & Geotecnologias</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+:root{--bg:#0D1829;--bg-alt:#111F36;--surface:#162440;--border:#1E3158;--fg:#E4EBF8;--fg-2:#A8BDD8;--fg-3:#6A88AE;--accent:#4D80F0;--accent-2:#3A6AE0;--accent-bg:#1A2F58;--navy:#0B1E45;--chip-bg:#1A3060;--chip-fg:#7AACFF;--tag-personal-bg:#2A1A0A;--tag-personal-fg:#FF9060;color-scheme:dark}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C111C;--bg-alt:#131B2A;--surface:#172035;--border:#253452;--fg:#E8EDF7;--fg-2:#A8B4CC;--fg-3:#667899;--accent:#4D7EF0;--accent-2:#6D97F5;--accent-bg:#1A2B4A;--navy:#1E3A72;--chip-bg:#1A2B4A;--chip-fg:#80AAFF;--tag-personal-bg:#2A1A0A;--tag-personal-fg:#FF9060;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C111C;--bg-alt:#131B2A;--surface:#172035;--border:#253452;--fg:#E8EDF7;--fg-2:#A8B4CC;--fg-3:#667899;--accent:#4D7EF0;--accent-2:#6D97F5;--accent-bg:#1A2B4A;--navy:#1E3A72;--chip-bg:#1A2B4A;--chip-fg:#80AAFF;--tag-personal-bg:#2A1A0A;--tag-personal-fg:#FF9060;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 24px;height:58px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;color:#fff;text-decoration:none;letter-spacing:-.02em;white-space:nowrap;flex-shrink:0}
+.nav-logo span{color:#5D9EFF}
+.nav-links{display:flex;gap:2px;list-style:none;flex-shrink:0}
+.nav-links a{font-size:.78rem;font-weight:500;color:#8AAFDE;text-decoration:none;padding:5px 9px;border-radius:6px;transition:color .15s,background .15s;white-space:nowrap}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.lang-switcher{display:flex;align-items:center;gap:3px}
+.lang-btn{display:flex;align-items:center;gap:4px;padding:4px 8px;border-radius:7px;border:1px solid transparent;cursor:pointer;background:none;font-size:.75rem;font-weight:500;color:#8AAFDE;transition:all .15s;white-space:nowrap}
+.lang-btn:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.2)}
+.lang-btn.active{background:rgba(93,158,255,.2);color:#5D9EFF;border-color:rgba(93,158,255,.5);font-weight:600}
+.flag{font-size:1rem;line-height:1}
+.theme-btn{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:1px solid rgba(255,255,255,.15);cursor:pointer;background:rgba(255,255,255,.07);color:#8AAFDE;transition:all .15s;font-size:1rem}
+.theme-btn:hover{background:rgba(93,158,255,.2);color:#5D9EFF;border-color:rgba(93,158,255,.4)}
+.nav-cta{font-size:.78rem;font-weight:600;color:#fff;background:var(--accent);padding:6px 14px;border-radius:7px;text-decoration:none;white-space:nowrap;transition:background .15s}
+.nav-cta:hover{background:var(--accent-2)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;border:none;background:none}
+.hamburger span{display:block;width:22px;height:2px;background:#8AAFDE;border-radius:2px}
+@media(max-width:860px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08);padding:12px 24px 20px;gap:2px;z-index:99}}
+@media(max-width:500px){.lang-btn .flag+span{display:none}.lang-btn{padding:4px 6px}}
+.hero{background:var(--navy);padding:72px 24px 64px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 85% 50%,rgba(26,86,232,.25),transparent 70%),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(26,86,232,.12),transparent 60%);pointer-events:none}
+.hero-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;position:relative}
+.hero-eyebrow{font-size:.7rem;font-weight:600;color:#7AACFF;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.hero-name{font-family:'Syne',sans-serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;color:#fff;line-height:1.08;letter-spacing:-.03em;text-wrap:balance;margin-bottom:10px}
+.hero-name em{font-style:normal;color:#5D9EFF}
+.hero-title{font-size:1rem;color:#8AAFDE;margin-bottom:12px;line-height:1.5}
+.hero-title strong{color:#BDD4F5;font-weight:600}
+.hero-rotating-titles{font-size:1.05rem;color:#8AAFDE;margin-bottom:14px;line-height:1.4;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.rotating-prefix{color:#8AAFDE;font-weight:400}
+.rotating-word{color:#5D9EFF;font-weight:700;font-family:'Syne',sans-serif;font-size:1.15rem;transition:opacity .3s ease;min-width:220px}
+.rotating-word.fade{opacity:0}
+.hero-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.hero-tag{font-size:.72rem;font-weight:600;color:#7AACFF;background:rgba(77,128,240,.15);border:1px solid rgba(77,128,240,.3);padding:4px 11px;border-radius:20px;letter-spacing:.03em}
+.hero-location{font-size:.82rem;color:#7B98C0;margin-bottom:20px;display:flex;align-items:center;gap:6px}
+.hero-summary{font-size:.9rem;color:#7B98C0;max-width:580px;line-height:1.7;margin-bottom:28px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.btn-primary{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;font-weight:600;color:#fff;background:var(--accent);padding:9px 20px;border-radius:8px;text-decoration:none;transition:background .15s}
+.btn-primary:hover{background:#3A6DEF}
+.btn-ghost{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;font-weight:500;color:#8AAFDE;border:1px solid #2D4878;padding:9px 20px;border-radius:8px;text-decoration:none;transition:border-color .15s,color .15s}
+.btn-ghost:hover{border-color:#4D7EF0;color:#BECFEE}
+.hero-contact{display:flex;gap:18px;flex-wrap:wrap}
+.contact-item{display:flex;align-items:center;gap:6px;font-size:.8rem;color:#7B98C0}
+.hero-stats{display:flex;flex-direction:column;gap:14px;min-width:170px}
+.stat-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px 20px;text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:1.9rem;font-weight:800;color:#5D9EFF;line-height:1;font-variant-numeric:tabular-nums}
+.stat-label{font-size:.68rem;color:#7B98C0;letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+@media(max-width:640px){.hero-inner{grid-template-columns:1fr}.hero-stats{flex-direction:row;flex-wrap:wrap}.stat-card{flex:1;min-width:120px}.hero{padding:52px 20px 48px}}
+section{padding:64px 24px}
+section:nth-child(even){background:var(--bg-alt)}
+.section-inner{max-width:1140px;margin:0 auto}
+.section-label{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.5rem,2.8vw,2rem);font-weight:700;color:var(--fg);letter-spacing:-.025em;text-wrap:balance;margin-bottom:40px;line-height:1.15}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.skill-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;transition:border-color .2s,box-shadow .2s}
+.skill-card:hover{border-color:var(--accent);box-shadow:0 4px 18px rgba(26,86,232,.08)}
+.skill-icon{width:38px;height:38px;background:var(--accent-bg);border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;color:var(--accent)}
+.skill-card h3{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;color:var(--fg);margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font-size:.7rem;font-weight:500;background:var(--chip-bg);color:var(--chip-fg);padding:3px 9px;border-radius:20px}
+.exp-list{display:flex;flex-direction:column}
+.exp-item{display:grid;grid-template-columns:190px 1fr;gap:0 32px;padding:32px 0;border-top:1px solid var(--border)}
+.exp-item:last-child{border-bottom:1px solid var(--border)}
+.exp-meta{padding-top:2px}
+.exp-dates{font-size:.76rem;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums;margin-bottom:3px}
+.exp-location{font-size:.76rem;color:var(--fg-3);line-height:1.4}
+.exp-tag{display:inline-block;margin-top:7px;font-size:.65rem;font-weight:600;padding:2px 8px;border-radius:20px;letter-spacing:.04em;text-transform:uppercase}
+.tag-current{background:rgba(26,86,232,.12);color:var(--accent);border:1px solid rgba(26,86,232,.25)}
+.tag-personal{background:var(--tag-personal-bg);color:var(--tag-personal-fg);border:1px solid rgba(192,80,16,.2)}
+.exp-company{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--fg);margin-bottom:2px;letter-spacing:-.015em}
+.exp-role{font-size:.84rem;font-weight:600;color:var(--accent);margin-bottom:12px}
+.exp-desc{font-size:.84rem;color:var(--fg-2);margin-bottom:10px;line-height:1.6}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:6px}
+.exp-bullets li{display:flex;gap:9px;font-size:.84rem;color:var(--fg-2);line-height:1.55}
+.exp-bullets li::before{content:'▸';color:var(--accent);flex-shrink:0;margin-top:1px;font-size:.72rem}
+@media(max-width:680px){.exp-item{grid-template-columns:1fr;gap:8px}.exp-meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.exp-dates{margin-bottom:0}}
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:32px}
+.edu-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px}
+.edu-year{font-size:.75rem;font-weight:600;color:var(--accent);margin-bottom:5px}
+.edu-degree{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:700;color:var(--fg);margin-bottom:4px;text-wrap:balance}
+.edu-school{font-size:.8rem;color:var(--fg-2)}
+.cert-box{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;margin-bottom:28px}
+.cert-box h3{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;color:var(--fg);margin-bottom:14px}
+.cert-row{display:flex;flex-wrap:wrap;gap:8px}
+.cert-chip{font-size:.75rem;background:var(--bg-alt);color:var(--fg-2);border:1px solid var(--border);padding:4px 11px;border-radius:20px}
+.lang-row{display:flex;gap:14px;flex-wrap:wrap}
+.lang-item{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:11px 18px}
+.lang-name{font-weight:600;font-size:.88rem;color:var(--fg)}
+.lang-level{font-size:.76rem;color:var(--fg-3)}
+.lang-dots{display:flex;gap:4px;margin-left:8px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--border)}
+.dot.filled{background:var(--accent)}
+.contact-section{background:var(--navy)!important;position:relative;overflow:hidden}
+.contact-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 90% 50%,rgba(26,86,232,.2),transparent 70%);pointer-events:none}
+.contact-section .section-label{color:#7AACFF}
+.contact-section .section-title{color:#fff;margin-bottom:28px}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.contact-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px 22px;display:flex;align-items:center;gap:13px}
+.contact-icon{width:38px;height:38px;background:rgba(26,86,232,.25);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#7AACFF;font-size:1.1rem}
+.contact-label{font-size:.72rem;color:#7B98C0;margin-bottom:2px}
+.contact-value{font-size:.84rem;font-weight:600;color:#BDD4F5;word-break:break-all}
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.08);padding:28px 24px;text-align:center}
+.footer-inner{max-width:1140px;margin:0 auto}
+.footer-text{font-size:.78rem;color:#5A78A8}
+</style>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#"><span>Flávio</span> Oliveira</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#skills" data-i="nav_skills">Competências</a></li>
+      <li><a href="#projects" data-i="nav_projects">Projetos</a></li>
+      <li><a href="#experience" data-i="nav_exp">Experiência</a></li>
+      <li><a href="#education" data-i="nav_edu">Formação</a></li>
+      <li><a href="#contact" data-i="nav_contact">Contato</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="pt"><span class="flag">🇧🇷</span><span>PT</span></button>
+        <button class="lang-btn" data-lang="en"><span class="flag">🇺🇸</span><span>EN</span></button>
+        <button class="lang-btn" data-lang="es"><span class="flag">🇪🇸</span><span>ES</span></button>
+      </div>
+      <button class="theme-btn" id="themeToggle" title="Toggle theme">🌙</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow" data-i="hero_eyebrow">+20 anos · Internacional · Brasil · Angola · Colômbia</div>
+      <h1 class="hero-name">Flávio <em>Oliveira</em></h1>
+      <div class="hero-rotating-titles">
+        <span class="rotating-prefix" data-i="hero_rotating_prefix">Especialista em</span>
+        <span class="rotating-word" id="rotatingTitle">Inteligência Artificial</span>
+      </div>
+      <div class="hero-tags">
+        <span class="hero-tag">LLMs &amp; RAG</span>
+        <span class="hero-tag">Visão Computacional</span>
+        <span class="hero-tag">GeoAI</span>
+        <span class="hero-tag">MLOps</span>
+        <span class="hero-tag">Engenheiro Cartógrafo</span>
+        <span class="hero-tag">Lider Técnico</span>
+        <span class="hero-tag">Product Owner</span>
+        <span class="hero-tag">Fundador</span>
+      </div>
+      <div class="hero-location">📍 <span data-i="hero_location">Governador Celso Ramos, SC, Brasil · Disponível para mudança</span></div>
+      <p class="hero-summary" data-i="hero_summary">Engenheiro com formação em Engenharia Cartográfica e carreira internacional em tecnologia, dados, geotecnologias e inovação digital. Atuação concentrada em IA, Machine Learning, Deep Learning, IA Generativa, LLMs, RAG e Ciência de Dados. Perfil híbrido entre tecnologia, produto, dados e liderança técnica.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contact" data-i="hero_cta_contact">✉ Contato</a>
+        <a class="btn-ghost" href="https://linkedin.com/in/flavio-antonio-oliveira-da-silva" target="_blank" rel="noopener">LinkedIn →</a>
+      </div>
+      <div class="hero-contact">
+        <div class="contact-item">📞 +55 48 99171-1308</div>
+        <div class="contact-item">✉ flaviocartografia@gmail.com</div>
+        <div class="contact-item">🌐 ibdiainstituto.com.br</div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-num">20+</div>
+        <div class="stat-label" data-i="stat_years">Anos Exp.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">18+</div>
+        <div class="stat-label" data-i="stat_exp">Empresas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">8</div>
+        <div class="stat-label" data-i="stat_degrees">Pós/MBAs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label" data-i="skills_label">Competências</div>
+    <h2 class="section-title" data-i="skills_title">Áreas de Especialização</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🤖</div>
+        <h3 data-i="sk1_title">IA, ML e Deep Learning</h3>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">Scikit-learn</span><span class="chip">Hugging Face</span><span class="chip">Transformers</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">💬</div>
+        <h3 data-i="sk2_title">LLMs e IA Generativa</h3>
+        <div class="chips">
+          <span class="chip">OpenAI</span><span class="chip">Claude</span><span class="chip">Mistral</span><span class="chip">LangChain</span><span class="chip">RAG</span><span class="chip">Embeddings</span><span class="chip">Prompt Eng.</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">👁</div>
+        <h3 data-i="sk3_title">Computer Vision e GeoAI</h3>
+        <div class="chips">
+          <span class="chip">CNNs</span><span class="chip">Segmentação</span><span class="chip">GeoPandas</span><span class="chip">Rasterio</span><span class="chip">GDAL/OGR</span><span class="chip">QGIS</span><span class="chip">GeoServer</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">⚙</div>
+        <h3 data-i="sk4_title">MLOps e Engenharia</h3>
+        <div class="chips">
+          <span class="chip">Docker</span><span class="chip">Git/GitHub</span><span class="chip">MLflow</span><span class="chip">DVC</span><span class="chip">Airflow</span><span class="chip">FastAPI</span><span class="chip">Flask</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🗄</div>
+        <h3 data-i="sk5_title">Dados e Infraestrutura</h3>
+        <div class="chips">
+          <span class="chip">PostgreSQL</span><span class="chip">PostGIS</span><span class="chip">SQL Server</span><span class="chip">ETL/ELT</span><span class="chip">AWS</span><span class="chip">Power BI</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🗺</div>
+        <h3 data-i="sk6_title">Geotecnologias e SIG</h3>
+        <div class="chips">
+          <span class="chip">ArcGIS</span><span class="chip">QGIS</span><span class="chip">PostGIS</span><span class="chip">Sensoriamento Remoto</span><span class="chip">LiDAR</span><span class="chip">Drones</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS PESSOAIS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-label" data-i="proj_label">Iniciativas</div>
+    <h2 class="section-title" data-i="proj_title">Projetos Pessoais</h2>
+    <div class="exp-list">
+
+      <!-- IBDIA -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="dp1_dates">Set 2026 – Presente</div>
+          <div class="exp-location">Brasil · Remoto</div>
+          <span class="exp-tag tag-current" data-i="t_current">Atual</span>
+          <span class="exp-tag tag-personal" data-i="t_personal">Projeto Pessoal</span>
+        </div>
+        <div>
+          <div class="exp-company">IBDIA — Instituto Brasileiro de Dados e Inteligência Artificial</div>
+          <div class="exp-role" data-i="dp1_role">Idealizador | Pesquisa e Inovação em IA</div>
+          <p class="exp-desc" data-i="dp1_desc">Iniciativa em fase de estruturação institucional dedicada à pesquisa, desenvolvimento e inovação em IA, ML, Deep Learning, Ciência de Dados, Analytics, GeoIA e tecnologias emergentes.</p>
+          <ul class="exp-bullets">
+            <li data-i="dp1_1">Definição de linhas de pesquisa, desenvolvimento de estudos, protótipos e arquiteturas baseadas em IA</li>
+            <li data-i="dp1_2">Frentes: IA Generativa, LLMs, GeoIA, Analytics, Automação e Pesquisa Aplicada</li>
+            <li data-i="dp1_3">Construção de parcerias com pesquisadores, universidades, empresas e instituições</li>
+            <li data-i="dp1_4">Áreas de aplicação: saúde, meio ambiente, cidades, infraestrutura, educação, defesa e políticas públicas</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- DataGeo Academy -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="dp2_dates">Out 2026 – Presente</div>
+          <div class="exp-location">Brasil · Remoto</div>
+          <span class="exp-tag tag-current" data-i="t_current">Atual</span>
+          <span class="exp-tag tag-personal" data-i="t_personal">Projeto Pessoal</span>
+        </div>
+        <div>
+          <div class="exp-company">DataGeo Academy</div>
+          <div class="exp-role" data-i="dp2_role">Idealizador | Criação de Conteúdo Técnico em IA, Dados e Geotecnologias</div>
+          <p class="exp-desc" data-i="dp2_desc">Plataforma de formação técnica em fase de estruturação, dedicada à produção de conteúdo educacional em IA, ML, Ciência de Dados, BI, Programação para Dados e Geotecnologias.</p>
+          <ul class="exp-bullets">
+            <li data-i="dp2_1">Concepção e produção de materiais técnico-didáticos organizados em trilhas de formação</li>
+            <li data-i="dp2_2">Frentes: IA/ML/DL aplicados, IA Generativa, LLMs, GeoIA, Data Science, Analytics, BI</li>
+            <li data-i="dp2_3">Produção de livros técnicos, mini cursos e materiais didáticos práticos</li>
+            <li data-i="dp2_4">Estruturação de trilhas de formação técnica por área de conhecimento</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIÊNCIA -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label" data-i="exp_label">Trajetória</div>
+    <h2 class="section-title" data-i="exp_title">Experiência Profissional</h2>
+    <div class="exp-list">
+
+      <!-- Hubgeo -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d1">Out 2023 – Ago 2026</div>
+          <div class="exp-location">Luanda, Angola · Remoto</div>
+        </div>
+        <div>
+          <div class="exp-company">Hubgeo Estudos e Projecto LDA</div>
+          <div class="exp-role" data-i="r1">Líder Técnico em IA, ML, DL e Geotecnologias | Consultor</div>
+          <ul class="exp-bullets">
+            <li data-i="e1_1">Definição de roadmap de inovação digital, priorização de casos de uso, KPIs, governança e apoio a decisões baseadas em dados e IA</li>
+            <li data-i="e1_2">Liderança SIG/WebGIS no projeto Mapa Areia Vermelha 1:200.000, integrando dados institucionais, campo e laboratório</li>
+            <li data-i="e1_3">Estruturação de pipelines ETL/ELT geoespaciais, QA/QC, metadados, geodatabases e serviços OGC</li>
+            <li data-i="e1_4">Aplicação de GenAI, automação, Python, R, Java, PostGIS e GeoServer; elaboração de relatórios executivos e propostas técnicas</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FS Geotecnologias Fundador -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d2">Jan 2026 – Ago 2026</div>
+          <div class="exp-location">São José, SC · Remoto</div>
+        </div>
+        <div>
+          <div class="exp-company">FS Geotecnologias</div>
+          <div class="exp-role" data-i="r2">Fundador | Head de Soluções em IA e Geotecnologias</div>
+          <ul class="exp-bullets">
+            <li data-i="e2_1">Liderança end-to-end de iniciativas em IA, Machine Learning, análise de dados e tecnologias geoespaciais</li>
+            <li data-i="e2_2">Coordenação de equipes multidisciplinares em dados, desenvolvimento, geoprocessamento, produto e negócios</li>
+            <li data-i="e2_3">Apoio à definição de arquiteturas, pipelines de dados, modelos analíticos e fluxos de integração entre IA e sistemas corporativos</li>
+            <li data-i="e2_4">Interface com stakeholders, clientes e parceiros, traduzindo necessidades em soluções técnicas escaláveis</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Maptriz -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d3">Fev 2026 – Jul 2026</div>
+          <div class="exp-location">Londrina, PR · Presencial</div>
+        </div>
+        <div>
+          <div class="exp-company">Maptriz Smart City</div>
+          <div class="exp-role" data-i="r3">Gerente de Projetos | Product Owner | IA, Geotecnologias e Smart Cities</div>
+          <ul class="exp-bullets">
+            <li data-i="e3_1">Liderança de projetos e produtos digitais para Smart Cities, gestão pública e inteligência territorial</li>
+            <li data-i="e3_2">Definição de visão, roadmap, backlog, requisitos e critérios de aceite junto a stakeholders e equipes técnicas</li>
+            <li data-i="e3_3">Integração entre negócio, desenvolvimento, dados, GIS, IA/ML, UX, APIs e dashboards para soluções municipais</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- WEC -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d4">Ago 2025 – Dez 2025</div>
+          <div class="exp-location">Bogotá, Colômbia · Remoto</div>
+        </div>
+        <div>
+          <div class="exp-company">WEC – World Engineering Corp</div>
+          <div class="exp-role" data-i="r4">Líder de Projetos de IA Conversacional | Consultor</div>
+          <ul class="exp-bullets">
+            <li data-i="e4_1">Coordenação técnica de solução de IA conversacional aplicada a avatares 3D com interação em tempo real</li>
+            <li data-i="e4_2">Integração de LLMs (OpenAI, Claude, Mistral) e pipelines de voz com ElevenLabs, Google TTS e Amazon Polly</li>
+            <li data-i="e4_3">Arquitetura de memória conversacional, detecção de intenção, lógica de fallback, APIs REST e WebSockets</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Geomais -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d5">Mai 2025 – Ago 2025</div>
+          <div class="exp-location">Florianópolis, SC · Presencial</div>
+        </div>
+        <div>
+          <div class="exp-company">Geomais Geotecnologia LTDA</div>
+          <div class="exp-role" data-i="r5">Engenheiro de IA Aplicada a Geotecnologias | Consultor</div>
+          <ul class="exp-bullets">
+            <li data-i="e5_1">Desenvolvimento de soluções IA/ML/DL aplicadas a geotecnologias, imagens e dados geoespaciais</li>
+            <li data-i="e5_2">Classificação, segmentação, análise preditiva, automação com Python, TensorFlow, APIs REST e Docker</li>
+            <li data-i="e5_3">Aplicação de práticas de MLOps e integração de modelos a pipelines de produção</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Olé Fibra -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d6">Abr 2025 – Jun 2025</div>
+          <div class="exp-location">Florianópolis, SC · Presencial</div>
+        </div>
+        <div>
+          <div class="exp-company">Olé Fibra</div>
+          <div class="exp-role" data-i="r6">Desenvolvedor Java | Consultor em Sistemas Internos</div>
+          <ul class="exp-bullets">
+            <li data-i="e6_1">Desenvolvimento de CRM interno em Java com POO, JPA e padrão MVC</li>
+            <li data-i="e6_2">Implementação de funcionalidades de gestão de clientes, regras de negócio e integração com banco de dados</li>
+            <li data-i="e6_3">Apoio no levantamento de requisitos e tradução de necessidades internas em soluções técnicas</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FS Geotecnologias Lider Projetos -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d7">Fev 2025 – Dez 2025</div>
+          <div class="exp-location">São José, SC</div>
+        </div>
+        <div>
+          <div class="exp-company">FS Geotecnologias</div>
+          <div class="exp-role" data-i="r7">Líder de Projetos de IA e Geotecnologias</div>
+          <ul class="exp-bullets">
+            <li data-i="e7_1">Liderança de projetos de IA com foco em ML, IA generativa, RAG, análise de dados e geotecnologias</li>
+            <li data-i="e7_2">Coordenação de equipes multidisciplinares de dados, desenvolvimento, geoprocessamento, produto e negócio</li>
+            <li data-i="e7_3">Interface com stakeholders, clientes e parceiros, traduzindo demandas em soluções aplicáveis e escaláveis</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Futuro 3D -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d8">Dez 2024 – Mai 2025</div>
+          <div class="exp-location">Vitória, ES · Remoto</div>
+        </div>
+        <div>
+          <div class="exp-company">Futuro 3D Laser Scanning e Topografia</div>
+          <div class="exp-role" data-i="r8">Coordenador Comercial | Consultor em Desenvolvimento de Negócios</div>
+          <ul class="exp-bullets">
+            <li data-i="e8_1">Desenvolvimento de negócios para soluções de laser scanning, topografia, dados 3D e geotecnologias</li>
+            <li data-i="e8_2">Estruturação do funil comercial, prospecção de oportunidades e relacionamento consultivo com clientes</li>
+            <li data-i="e8_3">Integração entre áreas comercial, operacional e técnica para expansão de mercado e geração de propostas</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FS Geotecnologias Líder Produtos -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d9">Set 2023 – Jan 2025</div>
+          <div class="exp-location">São José, SC</div>
+        </div>
+        <div>
+          <div class="exp-company">FS Geotecnologias</div>
+          <div class="exp-role" data-i="r9">Líder de Produtos e Soluções de Inovação</div>
+          <ul class="exp-bullets">
+            <li data-i="e9_1">Liderança de projetos de inovação, geotecnologias, dados e soluções digitais para setores público e privado</li>
+            <li data-i="e9_2">Apoio ao desenvolvimento de soluções com ML, análise preditiva, visão computacional e automação de processos</li>
+            <li data-i="e9_3">Estruturação de pipelines de dados geográficos integrando QGIS, ArcGIS, PostGIS, LiDAR e imagens orbitais</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Yan -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d10">Out 2022 – Mar 2024</div>
+          <div class="exp-location">São José, SC · Presencial</div>
+        </div>
+        <div>
+          <div class="exp-company">Yan Comércio e Representação Comercial</div>
+          <div class="exp-role" data-i="r10">Gerente Geral | Desenvolvimento Comercial e Operações</div>
+          <ul class="exp-bullets">
+            <li data-i="e10_1">Gestão geral da operação comercial com foco em representação de produtos e parcerias estratégicas</li>
+            <li data-i="e10_2">Prospecção de oportunidades, negociação com clientes e parceiros e acompanhamento de tratativas</li>
+            <li data-i="e10_3">Organização de processos internos e apoio ao posicionamento de mercado da empresa</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- BDM Head -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d11">Out 2021 – Ago 2023</div>
+          <div class="exp-location">Luanda, Angola · Presencial</div>
+        </div>
+        <div>
+          <div class="exp-company">BDM Engenharia e Tecnologia Lda.</div>
+          <div class="exp-role" data-i="r11">Head de Inovação Digital | Gerente de Projetos de Inovação Digital</div>
+          <ul class="exp-bullets">
+            <li data-i="e11_1">Liderança de projetos estratégicos de transformação digital, IA, ciência de dados, Big Data e analytics</li>
+            <li data-i="e11_2">Estruturação de soluções com ML, modelos estatísticos, análise preditiva e dados geoespaciais</li>
+            <li data-i="e11_3">Gestão de equipes multidisciplinares com foco em eficiência operacional, escalabilidade e geração de valor</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FS Soccer -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d12">Nov 2020 – Dez 2023</div>
+          <div class="exp-location">São José, SC · Presencial</div>
+        </div>
+        <div>
+          <div class="exp-company">FS Soccer</div>
+          <div class="exp-role" data-i="r12">Gerente Comercial e Operacional | Desenvolvimento de Negócios</div>
+          <ul class="exp-bullets">
+            <li data-i="e12_1">Gestão comercial e operacional de iniciativas no segmento esportivo</li>
+            <li data-i="e12_2">Desenvolvimento de negócios, parcerias estratégicas e relacionamento institucional</li>
+            <li data-i="e12_3">Análise de mercado, condução de negociações e acompanhamento de oportunidades</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Future -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d13">Jun 2021 – Set 2021</div>
+          <div class="exp-location">Luanda, Angola · Presencial</div>
+        </div>
+        <div>
+          <div class="exp-company">Future – Engenharia para além da técnica</div>
+          <div class="exp-role" data-i="r13">Gerente de Projetos de Inovação Digital</div>
+          <ul class="exp-bullets">
+            <li data-i="e13_1">Gestão de projetos de inovação digital, dados e transformação tecnológica</li>
+            <li data-i="e13_2">Coordenação de equipes multidisciplinares e estruturação de soluções em engenharia de dados e Big Data</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- BDM Geotec -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d14">Set 2018 – Jun 2021</div>
+          <div class="exp-location">Luanda, Angola · Presencial</div>
+        </div>
+        <div>
+          <div class="exp-company">Future / BDM Engenharia e Tecnologia Lda.</div>
+          <div class="exp-role" data-i="r14">Gerente de Projetos de Geotecnologias e Inovação Digital</div>
+          <ul class="exp-bullets">
+            <li data-i="e14_1">Gestão de projetos de geotecnologias, SIG, geoprocessamento, cartografia digital e análise espacial</li>
+            <li data-i="e14_2">Coordenação de equipes multidisciplinares em ambiente internacional</li>
+            <li data-i="e14_3">Interface com clientes e stakeholders para requisitos, validação de produtos e adaptação das soluções</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Prodam -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d15">Ago 2017 – Abr 2018</div>
+          <div class="exp-location">São Paulo, SP · Presencial</div>
+        </div>
+        <div>
+          <div class="exp-company">Prodam – Prefeitura de São Paulo</div>
+          <div class="exp-role" data-i="r15">Assessor da Vice-Presidência | Projetos de Geotecnologias e Cadastro Municipal</div>
+          <ul class="exp-bullets">
+            <li data-i="e15_1">Atuação em projetos estratégicos vinculados à Secretaria da Fazenda: cadastro municipal e geotecnologias</li>
+            <li data-i="e15_2">Coordenação de atualização de bases cadastrais, quadras fiscais e mapeamento de vegetação significativa</li>
+            <li data-i="e15_3">Interface com equipes técnicas e gestores institucionais para integração de dados e modernização da gestão pública</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- BDM Coordenador -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d16">Nov 2011 – Mai 2017</div>
+          <div class="exp-location">Luanda, Angola · Presencial</div>
+        </div>
+        <div>
+          <div class="exp-company">BDM Engenharia e Tecnologia Lda.</div>
+          <div class="exp-role" data-i="r16">Coordenador de Geotecnologias</div>
+          <ul class="exp-bullets">
+            <li data-i="e16_1">Coordenação de projetos estratégicos em SIG, geoprocessamento, cartografia digital e análise espacial</li>
+            <li data-i="e16_2">Liderança de equipes técnicas em projetos de infraestrutura, meio ambiente e planejamento territorial</li>
+            <li data-i="e16_3">Estruturação, validação e controle de qualidade de dados geoespaciais, mapas e bases territoriais</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Engefoto -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d17">Abr 2011 – Out 2011</div>
+          <div class="exp-location">Candeias, BA · Presencial</div>
+        </div>
+        <div>
+          <div class="exp-company">Engefoto – Engenharia e Aerolevantamentos</div>
+          <div class="exp-role" data-i="r17">Coordenador de Projeto | Engenheiro Residente</div>
+          <ul class="exp-bullets">
+            <li data-i="e17_1">Coordenação técnica no Projeto GNL Bahia: levantamentos topográficos, sondagens e cadastro de propriedades ao longo de ~19 km de dutos</li>
+            <li data-i="e17_2">Gestão de equipes de campo e validação de dados topográficos, geotécnicos e cadastrais</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Prosul -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d18">Ago 2008 – Mai 2011</div>
+          <div class="exp-location">Florianópolis, SC · Presencial</div>
+        </div>
+        <div>
+          <div class="exp-company">Prosul – Projetos, Supervisão e Planejamento</div>
+          <div class="exp-role" data-i="r18">Coordenador de Geoprocessamento</div>
+          <ul class="exp-bullets">
+            <li data-i="e18_1">Coordenação de projetos de geoprocessamento, cartografia digital e análise espacial para estudos ambientais</li>
+            <li data-i="e18_2">Controle de qualidade de produtos cartográficos e elaboração de mapas temáticos e relatórios técnicos</li>
+            <li data-i="e18_3">Elaboração de propostas técnicas e acompanhamento de fornecedores especializados</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Gismapa -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d19">Jan 2007 – Jun 2008</div>
+          <div class="exp-location">Governador Celso Ramos, SC</div>
+        </div>
+        <div>
+          <div class="exp-company">Gismapa – Serviços de Engenharia Cartográfica</div>
+          <div class="exp-role" data-i="r19">Coordenador Geral</div>
+          <ul class="exp-bullets">
+            <li data-i="e19_1">Coordenação geral de projetos de engenharia cartográfica, geoprocessamento, sensoriamento remoto e SIG</li>
+            <li data-i="e19_2">Supervisão de equipes, controle de qualidade e desenvolvimento de parcerias comerciais</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Gisplan -->
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-dates" data-i="d20">Abr 2006 – Jan 2007</div>
+          <div class="exp-location">Rio de Janeiro, RJ · Presencial</div>
+        </div>
+        <div>
+          <div class="exp-company">Gisplan Tecnologia da Geoinformação</div>
+          <div class="exp-role" data-i="r20">Engenheiro Cartógrafo | Geoprocessamento e Sensoriamento Remoto</div>
+          <ul class="exp-bullets">
+            <li data-i="e20_1">Cartografia temática, sensoriamento remoto, geoprocessamento, análise espacial e processamento de dados geográficos</li>
+            <li data-i="e20_2">Produção, organização e estruturação de bases cartográficas, camadas temáticas e mapas técnicos</li>
+            <li data-i="e20_3">Controle de qualidade, validação e padronização de produtos cartográficos e geoespaciais</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FORMAÇÃO -->
+<section id="education">
+  <div class="section-inner">
+    <div class="section-label" data-i="edu_label">Formação</div>
+    <h2 class="section-title" data-i="edu_title">Educação e Certificações</h2>
+
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-year">2003</div>
+        <div class="edu-degree" data-i="deg1">Engenharia Cartográfica</div>
+        <div class="edu-school">Universidade do Estado do Rio de Janeiro – UERJ</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2025</div>
+        <div class="edu-degree" data-i="deg2">MBA em Machine Learning in Production</div>
+        <div class="edu-school">Universidade Federal de São Carlos – UFSCar</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2025</div>
+        <div class="edu-degree" data-i="deg3">MBA em Tecnologia, Informação e Inovação para Negócios</div>
+        <div class="edu-school">Universidade Federal de São Carlos – UFSCar</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2025</div>
+        <div class="edu-degree" data-i="deg4">Pós-graduação em Inteligência Artificial</div>
+        <div class="edu-school">Universidade Federal de Viçosa – UFV</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2026</div>
+        <div class="edu-degree" data-i="deg5">Pós-graduação em Inteligência Artificial</div>
+        <div class="edu-school">Universidade Tecnológica Federal do Paraná – UTFPR</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2026</div>
+        <div class="edu-degree" data-i="deg6">Pós-graduação em Ciência de Dados</div>
+        <div class="edu-school">Universidade Tecnológica Federal do Paraná – UTFPR</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2026</div>
+        <div class="edu-degree" data-i="deg7">Pós-graduação em Tecnologia Java</div>
+        <div class="edu-school">Universidade Tecnológica Federal do Paraná – UTFPR</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-year">2026</div>
+        <div class="edu-degree" data-i="deg8">Pós-graduação em Deep Learning</div>
+        <div class="edu-school">Universidade Federal de Pernambuco – UFPE</div>
+      </div>
+    </div>
+
+    <div class="cert-box">
+      <h3>FIAP</h3>
+      <div class="cert-row">
+        <span class="cert-chip" data-i="c_fiap1">Inteligência Artificial e Computacional</span>
+        <span class="cert-chip" data-i="c_fiap2">Big Data e Analytics</span>
+        <span class="cert-chip" data-i="c_fiap3">DevOps &amp; Agile Culture</span>
+        <span class="cert-chip" data-i="c_fiap4">Cloud Fundamentals</span>
+        <span class="cert-chip" data-i="c_fiap5">Design Thinking</span>
+      </div>
+    </div>
+
+    <div class="cert-box">
+      <h3>PUC-Rio</h3>
+      <div class="cert-row">
+        <span class="cert-chip" data-i="c_puc1">Arquitetura de Microsserviços</span>
+        <span class="cert-chip" data-i="c_puc2">Desenvolvimento Full Stack</span>
+        <span class="cert-chip" data-i="c_puc3">Engenharia de Dados</span>
+      </div>
+    </div>
+
+    <div class="cert-box">
+      <h3>ENAP / FGV</h3>
+      <div class="cert-row">
+        <span class="cert-chip" data-i="c_enap1">Ciência de Dados</span>
+        <span class="cert-chip" data-i="c_enap2">Machine Learning</span>
+        <span class="cert-chip" data-i="c_enap3">Gestão de Projetos</span>
+        <span class="cert-chip" data-i="c_enap4">Gestão de Riscos</span>
+        <span class="cert-chip" data-i="c_enap5">Business Intelligence</span>
+      </div>
+    </div>
+
+    <div class="cert-box">
+      <h3>Leica Geosystems</h3>
+      <div class="cert-row">
+        <span class="cert-chip">Leica Pegasus 2 Ultimate</span>
+        <span class="cert-chip">Cyclone</span>
+        <span class="cert-chip">Publisher</span>
+        <span class="cert-chip">CloudWorx</span>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:32px;margin-bottom:16px" data-i="lang_label">Idiomas</div>
+    <div class="lang-row">
+      <div class="lang-item">
+        <div>
+          <div class="lang-name" data-i="lang_pt">Português</div>
+          <div class="lang-level" data-i="lang_pt_level">Nativo</div>
+        </div>
+        <div class="lang-dots">
+          <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+        </div>
+      </div>
+      <div class="lang-item">
+        <div>
+          <div class="lang-name" data-i="lang_en">Inglês</div>
+          <div class="lang-level" data-i="lang_en_level">Intermediário</div>
+        </div>
+        <div class="lang-dots">
+          <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+      </div>
+      <div class="lang-item">
+        <div>
+          <div class="lang-name" data-i="lang_es">Espanhol</div>
+          <div class="lang-level" data-i="lang_es_level">Intermediário</div>
+        </div>
+        <div class="lang-dots">
+          <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+      </div>
+      <div class="lang-item">
+        <div>
+          <div class="lang-name" data-i="lang_fr">Francês</div>
+          <div class="lang-level" data-i="lang_fr_level">Intermediário</div>
+        </div>
+        <div class="lang-dots">
+          <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contact" class="contact-section">
+  <div class="section-inner" style="position:relative">
+    <div class="section-label" data-i="contact_label">Contato</div>
+    <h2 class="section-title" data-i="contact_title">Vamos Conversar</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label" data-i="c_phone_label">Telefone / WhatsApp</div>
+          <div class="contact-value">+55 48 99171-1308</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">✉</div>
+        <div>
+          <div class="contact-label" data-i="c_email_label">E-mail</div>
+          <div class="contact-value">flaviocartografia@gmail.com</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🔗</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">flavio-antonio-oliveira-da-silva</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label" data-i="c_location_label">Localização</div>
+          <div class="contact-value" data-i="c_location_value">Governador Celso Ramos, SC, Brasil</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🌐</div>
+        <div>
+          <div class="contact-label">IBDIA</div>
+          <div class="contact-value">www.ibdiainstituto.com.br</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <p class="footer-text" data-i="footer_text">© 2026 Flávio Antonio Oliveira da Silva · Engenheiro Cartógrafo · Especialista em IA e Geotecnologias</p>
+  </div>
+</footer>
+
+<script>
+const S={
+  pt:{
+    nav_skills:"Competências",nav_projects:"Projetos",nav_exp:"Experiência",nav_edu:"Formação",nav_contact:"Contato",
+    hero_eyebrow:"+20 anos · Internacional · Brasil · Angola · Colômbia",
+    hero_rotating_prefix:"Especialista em",hero_title:"Especialista Técnico em Inteligência Artificial",
+    hero_location:"Governador Celso Ramos, SC, Brasil · Disponível para mudança",
+    hero_summary:"Engenheiro com formação em Engenharia Cartográfica e carreira internacional em tecnologia, dados, geotecnologias e inovação digital. Atuação concentrada em IA, Machine Learning, Deep Learning, IA Generativa, LLMs, RAG e Ciência de Dados. Perfil híbrido entre tecnologia, produto, dados e liderança técnica.",
+    hero_cta_contact:"✉ Contato",
+    stat_years:"Anos Exp.",stat_exp:"Empresas",stat_degrees:"Pós/MBAs",
+    skills_label:"Competências",skills_title:"Áreas de Especialização",
+    sk1_title:"IA, ML e Deep Learning",sk2_title:"LLMs e IA Generativa",sk3_title:"Computer Vision e GeoAI",
+    sk4_title:"MLOps e Engenharia",sk5_title:"Dados e Infraestrutura",sk6_title:"Geotecnologias e SIG",
+    proj_label:"Iniciativas",proj_title:"Projetos Pessoais",
+    t_current:"Atual",t_personal:"Projeto Pessoal",
+    dp1_dates:"Set 2026 – Presente",dp1_role:"Idealizador | Pesquisa e Inovação em IA",
+    dp1_desc:"Iniciativa em fase de estruturação institucional dedicada à pesquisa, desenvolvimento e inovação em IA, ML, Deep Learning, Ciência de Dados, Analytics, GeoIA e tecnologias emergentes.",
+    dp1_1:"Definição de linhas de pesquisa, desenvolvimento de estudos, protótipos e arquiteturas baseadas em IA",
+    dp1_2:"Frentes: IA Generativa, LLMs, GeoIA, Analytics, Automação e Pesquisa Aplicada",
+    dp1_3:"Construção de parcerias com pesquisadores, universidades, empresas e instituições",
+    dp1_4:"Áreas de aplicação: saúde, meio ambiente, cidades, infraestrutura, educação, defesa e políticas públicas",
+    dp2_dates:"Out 2026 – Presente",dp2_role:"Idealizador | Criação de Conteúdo Técnico em IA, Dados e Geotecnologias",
+    dp2_desc:"Plataforma de formação técnica em fase de estruturação, dedicada à produção de conteúdo educacional em IA, ML, Ciência de Dados, BI, Programação para Dados e Geotecnologias.",
+    dp2_1:"Concepção e produção de materiais técnico-didáticos organizados em trilhas de formação",
+    dp2_2:"Frentes: IA/ML/DL aplicados, IA Generativa, LLMs, GeoIA, Data Science, Analytics, BI",
+    dp2_3:"Produção de livros técnicos, mini cursos e materiais didáticos práticos",
+    dp2_4:"Estruturação de trilhas de formação técnica por área de conhecimento",
+    exp_label:"Trajetória",exp_title:"Experiência Profissional",
+    d1:"Out 2023 – Ago 2026",r1:"Líder Técnico em IA, ML, DL e Geotecnologias | Consultor",
+    e1_1:"Definição de roadmap de inovação digital, priorização de casos de uso, KPIs, governança e apoio a decisões baseadas em dados e IA",
+    e1_2:"Liderança SIG/WebGIS no projeto Mapa Areia Vermelha 1:200.000, integrando dados institucionais, campo e laboratório",
+    e1_3:"Estruturação de pipelines ETL/ELT geoespaciais, QA/QC, metadados, geodatabases e serviços OGC",
+    e1_4:"Aplicação de GenAI, automação, Python, R, Java, PostGIS e GeoServer; elaboração de relatórios executivos e propostas técnicas",
+    d2:"Jan 2026 – Ago 2026",r2:"Fundador | Head de Soluções em IA e Geotecnologias",
+    e2_1:"Liderança end-to-end de iniciativas em IA, Machine Learning, análise de dados e tecnologias geoespaciais",
+    e2_2:"Coordenação de equipes multidisciplinares em dados, desenvolvimento, geoprocessamento, produto e negócios",
+    e2_3:"Apoio à definição de arquiteturas, pipelines de dados, modelos analíticos e fluxos de integração entre IA e sistemas corporativos",
+    e2_4:"Interface com stakeholders, clientes e parceiros, traduzindo necessidades em soluções técnicas escaláveis",
+    d3:"Fev 2026 – Jul 2026",r3:"Gerente de Projetos | Product Owner | IA, Geotecnologias e Smart Cities",
+    e3_1:"Liderança de projetos e produtos digitais para Smart Cities, gestão pública e inteligência territorial",
+    e3_2:"Definição de visão, roadmap, backlog, requisitos e critérios de aceite junto a stakeholders e equipes técnicas",
+    e3_3:"Integração entre negócio, desenvolvimento, dados, GIS, IA/ML, UX, APIs e dashboards para soluções municipais",
+    d4:"Ago 2025 – Dez 2025",r4:"Líder de Projetos de IA Conversacional | Consultor",
+    e4_1:"Coordenação técnica de solução de IA conversacional aplicada a avatares 3D com interação em tempo real",
+    e4_2:"Integração de LLMs (OpenAI, Claude, Mistral) e pipelines de voz com ElevenLabs, Google TTS e Amazon Polly",
+    e4_3:"Arquitetura de memória conversacional, detecção de intenção, lógica de fallback, APIs REST e WebSockets",
+    d5:"Mai 2025 – Ago 2025",r5:"Engenheiro de IA Aplicada a Geotecnologias | Consultor",
+    e5_1:"Desenvolvimento de soluções IA/ML/DL aplicadas a geotecnologias, imagens e dados geoespaciais",
+    e5_2:"Classificação, segmentação, análise preditiva, automação com Python, TensorFlow, APIs REST e Docker",
+    e5_3:"Aplicação de práticas de MLOps e integração de modelos a pipelines de produção",
+    d6:"Abr 2025 – Jun 2025",r6:"Desenvolvedor Java | Consultor em Sistemas Internos",
+    e6_1:"Desenvolvimento de CRM interno em Java com POO, JPA e padrão MVC",
+    e6_2:"Implementação de funcionalidades de gestão de clientes, regras de negócio e integração com banco de dados",
+    e6_3:"Apoio no levantamento de requisitos e tradução de necessidades internas em soluções técnicas",
+    d7:"Fev 2025 – Dez 2025",r7:"Líder de Projetos de IA e Geotecnologias",
+    e7_1:"Liderança de projetos de IA com foco em ML, IA generativa, RAG, análise de dados e geotecnologias",
+    e7_2:"Coordenação de equipes multidisciplinares de dados, desenvolvimento, geoprocessamento, produto e negócio",
+    e7_3:"Interface com stakeholders, clientes e parceiros, traduzindo demandas em soluções aplicáveis e escaláveis",
+    d8:"Dez 2024 – Mai 2025",r8:"Coordenador Comercial | Consultor em Desenvolvimento de Negócios",
+    e8_1:"Desenvolvimento de negócios para soluções de laser scanning, topografia, dados 3D e geotecnologias",
+    e8_2:"Estruturação do funil comercial, prospecção de oportunidades e relacionamento consultivo com clientes",
+    e8_3:"Integração entre áreas comercial, operacional e técnica para expansão de mercado e geração de propostas",
+    d9:"Set 2023 – Jan 2025",r9:"Líder de Produtos e Soluções de Inovação",
+    e9_1:"Liderança de projetos de inovação, geotecnologias, dados e soluções digitais para setores público e privado",
+    e9_2:"Apoio ao desenvolvimento de soluções com ML, análise preditiva, visão computacional e automação de processos",
+    e9_3:"Estruturação de pipelines de dados geográficos integrando QGIS, ArcGIS, PostGIS, LiDAR e imagens orbitais",
+    d10:"Out 2022 – Mar 2024",r10:"Gerente Geral | Desenvolvimento Comercial e Operações",
+    e10_1:"Gestão geral da operação comercial com foco em representação de produtos e parcerias estratégicas",
+    e10_2:"Prospecção de oportunidades, negociação com clientes e parceiros e acompanhamento de tratativas",
+    e10_3:"Organização de processos internos e apoio ao posicionamento de mercado da empresa",
+    d11:"Out 2021 – Ago 2023",r11:"Head de Inovação Digital | Gerente de Projetos de Inovação Digital",
+    e11_1:"Liderança de projetos estratégicos de transformação digital, IA, ciência de dados, Big Data e analytics",
+    e11_2:"Estruturação de soluções com ML, modelos estatísticos, análise preditiva e dados geoespaciais",
+    e11_3:"Gestão de equipes multidisciplinares com foco em eficiência operacional, escalabilidade e geração de valor",
+    d12:"Nov 2020 – Dez 2023",r12:"Gerente Comercial e Operacional | Desenvolvimento de Negócios",
+    e12_1:"Gestão comercial e operacional de iniciativas no segmento esportivo",
+    e12_2:"Desenvolvimento de negócios, parcerias estratégicas e relacionamento institucional",
+    e12_3:"Análise de mercado, condução de negociações e acompanhamento de oportunidades",
+    d13:"Jun 2021 – Set 2021",r13:"Gerente de Projetos de Inovação Digital",
+    e13_1:"Gestão de projetos de inovação digital, dados e transformação tecnológica",
+    e13_2:"Coordenação de equipes multidisciplinares e estruturação de soluções em engenharia de dados e Big Data",
+    d14:"Set 2018 – Jun 2021",r14:"Gerente de Projetos de Geotecnologias e Inovação Digital",
+    e14_1:"Gestão de projetos de geotecnologias, SIG, geoprocessamento, cartografia digital e análise espacial",
+    e14_2:"Coordenação de equipes multidisciplinares em ambiente internacional",
+    e14_3:"Interface com clientes e stakeholders para requisitos, validação de produtos e adaptação das soluções",
+    d15:"Ago 2017 – Abr 2018",r15:"Assessor da Vice-Presidência | Projetos de Geotecnologias e Cadastro Municipal",
+    e15_1:"Atuação em projetos estratégicos vinculados à Secretaria da Fazenda: cadastro municipal e geotecnologias",
+    e15_2:"Coordenação de atualização de bases cadastrais, quadras fiscais e mapeamento de vegetação significativa",
+    e15_3:"Interface com equipes técnicas e gestores institucionais para integração de dados e modernização da gestão pública",
+    d16:"Nov 2011 – Mai 2017",r16:"Coordenador de Geotecnologias",
+    e16_1:"Coordenação de projetos estratégicos em SIG, geoprocessamento, cartografia digital e análise espacial",
+    e16_2:"Liderança de equipes técnicas em projetos de infraestrutura, meio ambiente e planejamento territorial",
+    e16_3:"Estruturação, validação e controle de qualidade de dados geoespaciais, mapas e bases territoriais",
+    d17:"Abr 2011 – Out 2011",r17:"Coordenador de Projeto | Engenheiro Residente",
+    e17_1:"Coordenação técnica no Projeto GNL Bahia: levantamentos topográficos, sondagens e cadastro de propriedades ao longo de ~19 km de dutos",
+    e17_2:"Gestão de equipes de campo e validação de dados topográficos, geotécnicos e cadastrais",
+    d18:"Ago 2008 – Mai 2011",r18:"Coordenador de Geoprocessamento",
+    e18_1:"Coordenação de projetos de geoprocessamento, cartografia digital e análise espacial para estudos ambientais",
+    e18_2:"Controle de qualidade de produtos cartográficos e elaboração de mapas temáticos e relatórios técnicos",
+    e18_3:"Elaboração de propostas técnicas e acompanhamento de fornecedores especializados",
+    d19:"Jan 2007 – Jun 2008",r19:"Coordenador Geral",
+    e19_1:"Coordenação geral de projetos de engenharia cartográfica, geoprocessamento, sensoriamento remoto e SIG",
+    e19_2:"Supervisão de equipes, controle de qualidade e desenvolvimento de parcerias comerciais",
+    d20:"Abr 2006 – Jan 2007",r20:"Engenheiro Cartógrafo | Geoprocessamento e Sensoriamento Remoto",
+    e20_1:"Cartografia temática, sensoriamento remoto, geoprocessamento, análise espacial e processamento de dados geográficos",
+    e20_2:"Produção, organização e estruturação de bases cartográficas, camadas temáticas e mapas técnicos",
+    e20_3:"Controle de qualidade, validação e padronização de produtos cartográficos e geoespaciais",
+    edu_label:"Formação",edu_title:"Educação e Certificações",
+    deg1:"Engenharia Cartográfica",deg2:"MBA em Machine Learning in Production",
+    deg3:"MBA em Tecnologia, Informação e Inovação para Negócios",deg4:"Pós-graduação em Inteligência Artificial",
+    deg5:"Pós-graduação em Inteligência Artificial",deg6:"Pós-graduação em Ciência de Dados",
+    deg7:"Pós-graduação em Tecnologia Java",deg8:"Pós-graduação em Deep Learning",
+    c_fiap1:"Inteligência Artificial e Computacional",c_fiap2:"Big Data e Analytics",c_fiap3:"DevOps & Agile Culture",c_fiap4:"Cloud Fundamentals",c_fiap5:"Design Thinking",
+    c_puc1:"Arquitetura de Microsserviços",c_puc2:"Desenvolvimento Full Stack",c_puc3:"Engenharia de Dados",
+    c_enap1:"Ciência de Dados",c_enap2:"Machine Learning",c_enap3:"Gestão de Projetos",c_enap4:"Gestão de Riscos",c_enap5:"Business Intelligence",
+    lang_label:"Idiomas",lang_pt:"Português",lang_pt_level:"Nativo",lang_en:"Inglês",lang_en_level:"Intermediário",
+    lang_es:"Espanhol",lang_es_level:"Intermediário",lang_fr:"Francês",lang_fr_level:"Intermediário",
+    contact_label:"Contato",contact_title:"Vamos Conversar",
+    c_phone_label:"Telefone / WhatsApp",c_email_label:"E-mail",c_location_label:"Localização",c_location_value:"Governador Celso Ramos, SC, Brasil",
+    footer_text:"© 2026 Flávio Antonio Oliveira da Silva · Engenheiro Cartógrafo · Especialista em IA e Geotecnologias"
+  },
+  en:{
+    nav_skills:"Skills",nav_projects:"Projects",nav_exp:"Experience",nav_edu:"Education",nav_contact:"Contact",
+    hero_eyebrow:"+20 years · International · Brazil · Angola · Colombia",
+    hero_rotating_prefix:"Specialist in",hero_title:"AI Technical Specialist",
+    hero_location:"Governador Celso Ramos, SC, Brazil · Open to relocation",
+    hero_summary:"Engineer with a background in Cartographic Engineering and an international career in technology, data, geotechnologies and digital innovation. Focus on AI, Machine Learning, Deep Learning, Generative AI, LLMs, RAG and Data Science. Hybrid profile across technology, product, data and technical leadership.",
+    hero_cta_contact:"✉ Contact",
+    stat_years:"Years Exp.",stat_exp:"Companies",stat_degrees:"Post/MBAs",
+    skills_label:"Skills",skills_title:"Areas of Expertise",
+    sk1_title:"AI, ML & Deep Learning",sk2_title:"LLMs & Generative AI",sk3_title:"Computer Vision & GeoAI",
+    sk4_title:"MLOps & Engineering",sk5_title:"Data & Infrastructure",sk6_title:"Geotechnologies & GIS",
+    proj_label:"Initiatives",proj_title:"Personal Projects",
+    t_current:"Current",t_personal:"Personal Project",
+    dp1_dates:"Sep 2026 – Present",dp1_role:"Founder | Research and Innovation in AI",
+    dp1_desc:"Institutional initiative in structuring phase dedicated to research, development and innovation in AI, ML, Deep Learning, Data Science, Analytics, GeoAI and emerging technologies.",
+    dp1_1:"Definition of research lines, development of studies, prototypes and AI-based architectures",
+    dp1_2:"Areas: Generative AI, LLMs, GeoIA, Analytics, Automation and Applied Research",
+    dp1_3:"Building partnerships with researchers, universities, companies and institutions",
+    dp1_4:"Application areas: health, environment, cities, infrastructure, education, defense and public policy",
+    dp2_dates:"Oct 2026 – Present",dp2_role:"Founder | Technical Content Creation in AI, Data & Geotechnologies",
+    dp2_desc:"Technical training platform in structuring phase, dedicated to educational content production in AI, ML, Data Science, BI, Data Programming and Geotechnologies.",
+    dp2_1:"Conception and production of technical-didactic materials organized in training tracks",
+    dp2_2:"Areas: Applied AI/ML/DL, Generative AI, LLMs, GeoAI, Data Science, Analytics, BI",
+    dp2_3:"Production of technical books, mini-courses and practical didactic materials",
+    dp2_4:"Structuring of technical training tracks by knowledge area",
+    exp_label:"Journey",exp_title:"Professional Experience",
+    d1:"Oct 2023 – Aug 2026",r1:"Technical Lead in AI, ML, DL & Geotechnologies | Consultant",
+    e1_1:"Digital innovation roadmap, use case prioritization, KPIs, governance and AI-driven decision support",
+    e1_2:"GIS/WebGIS lead for Mapa Areia Vermelha 1:200,000, integrating institutional, field and lab data",
+    e1_3:"ETL/ELT geospatial pipelines, QA/QC, metadata, geodatabases and OGC services",
+    e1_4:"GenAI, automation, Python, R, Java, PostGIS and GeoServer; executive reports and technical proposals",
+    d2:"Jan 2026 – Aug 2026",r2:"Founder | Head of AI & Geotechnology Solutions",
+    e2_1:"End-to-end leadership of AI, Machine Learning, data analysis and geospatial technology initiatives",
+    e2_2:"Coordination of multidisciplinary teams in data, development, geoprocessing, product and business",
+    e2_3:"Architecture definition, data pipelines, analytical models and AI-corporate systems integration",
+    e2_4:"Interface with stakeholders, clients and partners translating needs into scalable technical solutions",
+    d3:"Feb 2026 – Jul 2026",r3:"Project Manager | Product Owner | AI, Geotechnologies & Smart Cities",
+    e3_1:"Leadership of digital projects and products for Smart Cities, public management and territorial intelligence",
+    e3_2:"Vision, roadmap, backlog, requirements and acceptance criteria definition with stakeholders and technical teams",
+    e3_3:"Integration of business, development, data, GIS, AI/ML, UX, APIs and dashboards for municipal solutions",
+    d4:"Aug 2025 – Dec 2025",r4:"Conversational AI Project Lead | Consultant",
+    e4_1:"Technical coordination of conversational AI solution applied to 3D avatars with real-time interaction",
+    e4_2:"Integration of LLMs (OpenAI, Claude, Mistral) and voice pipelines with ElevenLabs, Google TTS and Amazon Polly",
+    e4_3:"Conversational memory, intent detection, fallback logic, REST APIs and WebSockets architecture",
+    d5:"May 2025 – Aug 2025",r5:"AI Engineer Applied to Geotechnologies | Consultant",
+    e5_1:"Development of AI/ML/DL solutions applied to geotechnologies, images and geospatial data",
+    e5_2:"Classification, segmentation, predictive analysis, automation with Python, TensorFlow, REST APIs and Docker",
+    e5_3:"MLOps practices and model integration into production pipelines",
+    d6:"Apr 2025 – Jun 2025",r6:"Java Developer | Internal Systems Consultant",
+    e6_1:"Internal CRM development in Java with OOP, JPA and MVC pattern",
+    e6_2:"Implementation of customer management, business rules and database integration features",
+    e6_3:"Requirements gathering and translation of internal needs into technical solutions",
+    d7:"Feb 2025 – Dec 2025",r7:"AI & Geotechnology Project Lead",
+    e7_1:"Leadership of AI projects focused on ML, Generative AI, RAG, data analysis and geotechnologies",
+    e7_2:"Coordination of multidisciplinary teams in data, development, geoprocessing, product and business",
+    e7_3:"Stakeholder interface translating demands into applicable and scalable solutions",
+    d8:"Dec 2024 – May 2025",r8:"Commercial Coordinator | Business Development Consultant",
+    e8_1:"Business development for laser scanning, topography, 3D data and geotechnology solutions",
+    e8_2:"Sales funnel structuring, opportunity prospecting and consultative client relationship",
+    e8_3:"Integration between commercial, operational and technical areas for market expansion",
+    d9:"Sep 2023 – Jan 2025",r9:"Innovation Products & Solutions Lead",
+    e9_1:"Leadership of innovation, geotechnology, data and digital solutions projects for public and private sectors",
+    e9_2:"ML, predictive analysis, computer vision and process automation solutions development",
+    e9_3:"Geographic data pipelines integrating QGIS, ArcGIS, PostGIS, LiDAR and orbital images",
+    d10:"Oct 2022 – Mar 2024",r10:"General Manager | Commercial Development & Operations",
+    e10_1:"General management of commercial operations focused on product representation and strategic partnerships",
+    e10_2:"Opportunity prospecting, client and partner negotiation and deal tracking",
+    e10_3:"Internal process organization and market positioning support",
+    d11:"Oct 2021 – Aug 2023",r11:"Head of Digital Innovation | Digital Innovation Project Manager",
+    e11_1:"Leadership of strategic projects in digital transformation, AI, data science, Big Data and analytics",
+    e11_2:"Solutions with ML, statistical models, predictive analysis and geospatial data",
+    e11_3:"Multidisciplinary team management focused on operational efficiency, scalability and value generation",
+    d12:"Nov 2020 – Dec 2023",r12:"Commercial & Operational Manager | Business Development",
+    e12_1:"Commercial and operational management of initiatives in the sports segment",
+    e12_2:"Business development, strategic partnerships and institutional relations",
+    e12_3:"Market analysis, negotiations and opportunity tracking",
+    d13:"Jun 2021 – Sep 2021",r13:"Digital Innovation Project Manager",
+    e13_1:"Digital innovation, data and digital transformation project management",
+    e13_2:"Multidisciplinary team coordination and data engineering and Big Data solutions",
+    d14:"Sep 2018 – Jun 2021",r14:"Geotechnology & Digital Innovation Project Manager",
+    e14_1:"Geotechnology, GIS, geoprocessing, digital cartography and spatial analysis projects",
+    e14_2:"International multidisciplinary team coordination",
+    e14_3:"Client and stakeholder interface for requirements, product validation and solution adaptation",
+    d15:"Aug 2017 – Apr 2018",r15:"VP Advisor | Geotechnology & Municipal Cadastre Projects",
+    e15_1:"Strategic projects linked to the Municipal Finance Secretariat: cadastre and geotechnologies",
+    e15_2:"Coordination of cadastral, fiscal block and significant vegetation mapping updates",
+    e15_3:"Interface with technical teams and institutional managers for data integration and public management modernization",
+    d16:"Nov 2011 – May 2017",r16:"Geotechnology Coordinator",
+    e16_1:"Strategic projects in GIS, geoprocessing, digital cartography and spatial analysis",
+    e16_2:"Technical team leadership in infrastructure, environment and territorial planning projects",
+    e16_3:"Geospatial data quality control, maps and territorial databases",
+    d17:"Apr 2011 – Oct 2011",r17:"Project Coordinator | Resident Engineer",
+    e17_1:"Technical coordination in GNL Bahia Project: topographic surveys, drilling and property registration along ~19 km of pipeline",
+    e17_2:"Field team management and topographic, geotechnical and cadastral data validation",
+    d18:"Aug 2008 – May 2011",r18:"Geoprocessing Coordinator",
+    e18_1:"Geoprocessing, digital cartography and spatial analysis projects for environmental studies",
+    e18_2:"Quality control of cartographic products and thematic maps and technical reports",
+    e18_3:"Technical proposals and specialized supplier management",
+    d19:"Jan 2007 – Jun 2008",r19:"General Coordinator",
+    e19_1:"General coordination of cartographic engineering, geoprocessing, remote sensing and GIS projects",
+    e19_2:"Team supervision, quality control and commercial partnership development",
+    d20:"Apr 2006 – Jan 2007",r20:"Cartographic Engineer | Geoprocessing & Remote Sensing",
+    e20_1:"Thematic cartography, remote sensing, geoprocessing, spatial analysis and geographic data processing",
+    e20_2:"Production, organization and structuring of cartographic databases, thematic layers and technical maps",
+    e20_3:"Quality control, validation and standardization of cartographic and geospatial products",
+    edu_label:"Education",edu_title:"Education & Certifications",
+    deg1:"Cartographic Engineering",deg2:"MBA in Machine Learning in Production",
+    deg3:"MBA in Technology, Information and Innovation for Business",deg4:"Graduate in Artificial Intelligence",
+    deg5:"Graduate in Artificial Intelligence",deg6:"Graduate in Data Science",
+    deg7:"Graduate in Java Technology",deg8:"Graduate in Deep Learning",
+    c_fiap1:"Artificial Intelligence",c_fiap2:"Big Data & Analytics",c_fiap3:"DevOps & Agile Culture",c_fiap4:"Cloud Fundamentals",c_fiap5:"Design Thinking",
+    c_puc1:"Microservices Architecture",c_puc2:"Full Stack Development",c_puc3:"Data Engineering",
+    c_enap1:"Data Science",c_enap2:"Machine Learning",c_enap3:"Project Management",c_enap4:"Risk Management",c_enap5:"Business Intelligence",
+    lang_label:"Languages",lang_pt:"Portuguese",lang_pt_level:"Native",lang_en:"English",lang_en_level:"Intermediate",
+    lang_es:"Spanish",lang_es_level:"Intermediate",lang_fr:"French",lang_fr_level:"Intermediate",
+    contact_label:"Contact",contact_title:"Let's Talk",
+    c_phone_label:"Phone / WhatsApp",c_email_label:"Email",c_location_label:"Location",c_location_value:"Governador Celso Ramos, SC, Brazil",
+    footer_text:"© 2026 Flávio Antonio Oliveira da Silva · Cartographic Engineer · AI & Geotechnology Specialist"
+  },
+  es:{
+    nav_skills:"Habilidades",nav_projects:"Proyectos",nav_exp:"Experiencia",nav_edu:"Formación",nav_contact:"Contacto",
+    hero_eyebrow:"+20 años · Internacional · Brasil · Angola · Colombia",
+    hero_rotating_prefix:"Especialista en",hero_title:"Especialista Técnico en Inteligencia Artificial",
+    hero_location:"Governador Celso Ramos, SC, Brasil · Disponible para reubicación",
+    hero_summary:"Ingeniero con formación en Ingeniería Cartográfica y carrera internacional en tecnología, datos, geotecnologías e innovación digital. Actuación concentrada en IA, Machine Learning, Deep Learning, IA Generativa, LLMs, RAG y Ciencia de Datos. Perfil híbrido entre tecnología, producto, datos y liderazgo técnico.",
+    hero_cta_contact:"✉ Contacto",
+    stat_years:"Años Exp.",stat_exp:"Empresas",stat_degrees:"Pos/MBAs",
+    skills_label:"Habilidades",skills_title:"Áreas de Especialización",
+    sk1_title:"IA, ML y Deep Learning",sk2_title:"LLMs e IA Generativa",sk3_title:"Visión por Computadora y GeoIA",
+    sk4_title:"MLOps e Ingeniería",sk5_title:"Datos e Infraestructura",sk6_title:"Geotecnologías y SIG",
+    proj_label:"Iniciativas",proj_title:"Proyectos Personales",
+    t_current:"Actual",t_personal:"Proyecto Personal",
+    dp1_dates:"Sep 2026 – Presente",dp1_role:"Fundador | Investigación e Innovación en IA",
+    dp1_desc:"Iniciativa en fase de estructuración institucional dedicada a la investigación, desarrollo e innovación en IA, ML, Deep Learning, Ciencia de Datos, Analytics, GeoIA y tecnologías emergentes.",
+    dp1_1:"Definición de líneas de investigación, estudios, prototipos y arquitecturas basadas en IA",
+    dp1_2:"Frentes: IA Generativa, LLMs, GeoIA, Analytics, Automatización e Investigación Aplicada",
+    dp1_3:"Construcción de alianzas con investigadores, universidades, empresas e instituciones",
+    dp1_4:"Áreas de aplicación: salud, medio ambiente, ciudades, infraestructura, educación, defensa y políticas públicas",
+    dp2_dates:"Oct 2026 – Presente",dp2_role:"Fundador | Creación de Contenido Técnico en IA, Datos y Geotecnologías",
+    dp2_desc:"Plataforma de formación técnica en fase de estructuración, dedicada a la producción de contenido educativo en IA, ML, Ciencia de Datos, BI, Programación para Datos y Geotecnologías.",
+    dp2_1:"Concepción y producción de materiales técnico-didácticos organizados en itinerarios formativos",
+    dp2_2:"Frentes: IA/ML/DL aplicados, IA Generativa, LLMs, GeoIA, Data Science, Analytics, BI",
+    dp2_3:"Producción de libros técnicos, mini cursos y materiales didácticos prácticos",
+    dp2_4:"Estructuración de itinerarios formativos técnicos por área de conocimiento",
+    exp_label:"Trayectoria",exp_title:"Experiencia Profesional",
+    d1:"Oct 2023 – Ago 2026",r1:"Líder Técnico en IA, ML, DL y Geotecnologías | Consultor",
+    e1_1:"Definición de hoja de ruta de innovación digital, priorización de casos de uso, KPIs y gobernanza",
+    e1_2:"Liderazgo SIG/WebGIS en el proyecto Mapa Areia Vermelha 1:200.000",
+    e1_3:"Pipelines ETL/ELT geoespaciales, QA/QC, metadatos, geodatabases y servicios OGC",
+    e1_4:"GenAI, automatización, Python, R, Java, PostGIS y GeoServer; informes ejecutivos y propuestas técnicas",
+    d2:"Ene 2026 – Ago 2026",r2:"Fundador | Head de Soluciones en IA y Geotecnologías",
+    e2_1:"Liderazgo end-to-end de iniciativas en IA, Machine Learning, análisis de datos y tecnologías geoespaciales",
+    e2_2:"Coordinación de equipos multidisciplinarios en datos, desarrollo, geoprocesamiento, producto y negocio",
+    e2_3:"Definición de arquitecturas, pipelines de datos, modelos analíticos e integración IA-sistemas corporativos",
+    e2_4:"Interfaz con stakeholders, clientes y socios traduciendo necesidades en soluciones técnicas escalables",
+    d3:"Feb 2026 – Jul 2026",r3:"Gerente de Proyectos | Product Owner | IA, Geotecnologías y Smart Cities",
+    e3_1:"Liderazgo de proyectos y productos digitales para Smart Cities y gestión pública",
+    e3_2:"Visión, hoja de ruta, backlog, requisitos y criterios de aceptación con stakeholders y equipos técnicos",
+    e3_3:"Integración entre negocio, datos, GIS, IA/ML, UX, APIs y dashboards para soluciones municipales",
+    d4:"Ago 2025 – Dic 2025",r4:"Líder de Proyectos de IA Conversacional | Consultor",
+    e4_1:"Coordinación técnica de solución de IA conversacional aplicada a avatares 3D con interacción en tiempo real",
+    e4_2:"Integración de LLMs (OpenAI, Claude, Mistral) y pipelines de voz con ElevenLabs, Google TTS y Amazon Polly",
+    e4_3:"Memoria conversacional, detección de intención, lógica de fallback, APIs REST y WebSockets",
+    d5:"May 2025 – Ago 2025",r5:"Ingeniero de IA Aplicada a Geotecnologías | Consultor",
+    e5_1:"Desarrollo de soluciones IA/ML/DL aplicadas a geotecnologías, imágenes y datos geoespaciales",
+    e5_2:"Clasificación, segmentación, análisis predictivo, automatización con Python, TensorFlow y Docker",
+    e5_3:"Prácticas MLOps e integración de modelos en pipelines de producción",
+    d6:"Abr 2025 – Jun 2025",r6:"Desarrollador Java | Consultor en Sistemas Internos",
+    e6_1:"Desarrollo de CRM interno en Java con POO, JPA y patrón MVC",
+    e6_2:"Implementación de funcionalidades de gestión de clientes y reglas de negocio",
+    e6_3:"Levantamiento de requisitos y traducción de necesidades internas en soluciones técnicas",
+    d7:"Feb 2025 – Dic 2025",r7:"Líder de Proyectos de IA y Geotecnologías",
+    e7_1:"Liderazgo de proyectos de IA con foco en ML, IA generativa, RAG y geotecnologías",
+    e7_2:"Coordinación de equipos multidisciplinarios en datos, desarrollo y geoprocesamiento",
+    e7_3:"Interfaz con stakeholders traduciendo demandas en soluciones aplicables y escalables",
+    d8:"Dic 2024 – May 2025",r8:"Coordinador Comercial | Consultor en Desarrollo de Negocios",
+    e8_1:"Desarrollo de negocios para soluciones de laser scanning, topografía y geotecnologías",
+    e8_2:"Estructuración del embudo comercial y relación consultiva con clientes",
+    e8_3:"Integración entre áreas comercial, operacional y técnica para expansión de mercado",
+    d9:"Sep 2023 – Ene 2025",r9:"Líder de Productos y Soluciones de Innovación",
+    e9_1:"Liderazgo de proyectos de innovación, geotecnologías y soluciones digitales para sectores público y privado",
+    e9_2:"ML, análisis predictivo, visión por computadora y automatización de procesos",
+    e9_3:"Pipelines de datos geográficos integrando QGIS, ArcGIS, PostGIS, LiDAR e imágenes orbitales",
+    d10:"Oct 2022 – Mar 2024",r10:"Gerente General | Desarrollo Comercial y Operaciones",
+    e10_1:"Gestión general de la operación comercial con representación de productos y alianzas estratégicas",
+    e10_2:"Prospección de oportunidades, negociación y seguimiento de acuerdos",
+    e10_3:"Organización de procesos internos y apoyo al posicionamiento de mercado",
+    d11:"Oct 2021 – Ago 2023",r11:"Head de Innovación Digital | Gerente de Proyectos de Innovación Digital",
+    e11_1:"Liderazgo de proyectos estratégicos de transformación digital, IA y ciencia de datos",
+    e11_2:"Soluciones con ML, modelos estadísticos, análisis predictivo y datos geoespaciales",
+    e11_3:"Gestión de equipos multidisciplinarios con foco en escalabilidad y generación de valor",
+    d12:"Nov 2020 – Dic 2023",r12:"Gerente Comercial y Operacional | Desarrollo de Negocios",
+    e12_1:"Gestión comercial y operacional en el segmento deportivo",
+    e12_2:"Desarrollo de negocios, alianzas estratégicas y relaciones institucionales",
+    e12_3:"Análisis de mercado, negociaciones y seguimiento de oportunidades",
+    d13:"Jun 2021 – Sep 2021",r13:"Gerente de Proyectos de Innovación Digital",
+    e13_1:"Gestión de proyectos de innovación digital, datos y transformación tecnológica",
+    e13_2:"Coordinación de equipos multidisciplinarios y soluciones en ingeniería de datos",
+    d14:"Sep 2018 – Jun 2021",r14:"Gerente de Proyectos de Geotecnologías e Innovación Digital",
+    e14_1:"Proyectos de geotecnologías, SIG, geoprocesamiento, cartografía digital y análisis espacial",
+    e14_2:"Coordinación de equipos multidisciplinarios en entorno internacional",
+    e14_3:"Interfaz con clientes y stakeholders para requisitos, validación y adaptación de soluciones",
+    d15:"Ago 2017 – Abr 2018",r15:"Asesor de Vicepresidencia | Proyectos de Geotecnologías y Catastro Municipal",
+    e15_1:"Proyectos estratégicos vinculados a la Secretaría de Hacienda: catastro municipal y geotecnologías",
+    e15_2:"Actualización de bases catastrales, manzanas fiscales y mapeo de vegetación significativa",
+    e15_3:"Interfaz con equipos técnicos y gestores para integración de datos y modernización de gestión pública",
+    d16:"Nov 2011 – May 2017",r16:"Coordinador de Geotecnologías",
+    e16_1:"Proyectos estratégicos en SIG, geoprocesamiento, cartografía digital y análisis espacial",
+    e16_2:"Liderazgo de equipos técnicos en infraestructura, medio ambiente y planificación territorial",
+    e16_3:"Estructuración, validación y control de calidad de datos geoespaciales y bases territoriales",
+    d17:"Abr 2011 – Oct 2011",r17:"Coordinador de Proyecto | Ingeniero Residente",
+    e17_1:"Coordinación técnica en Proyecto GNL Bahia: levantamientos topográficos y catastro de propiedades en ~19 km de ductos",
+    e17_2:"Gestión de equipos de campo y validación de datos topográficos y geotécnicos",
+    d18:"Ago 2008 – May 2011",r18:"Coordinador de Geoprocesamiento",
+    e18_1:"Proyectos de geoprocesamiento, cartografía digital y análisis espacial para estudios ambientales",
+    e18_2:"Control de calidad de productos cartográficos y elaboración de mapas temáticos",
+    e18_3:"Elaboración de propuestas técnicas y seguimiento de proveedores especializados",
+    d19:"Ene 2007 – Jun 2008",r19:"Coordinador General",
+    e19_1:"Coordinación general de proyectos de ingeniería cartográfica, geoprocesamiento y SIG",
+    e19_2:"Supervisión de equipos, control de calidad y desarrollo de alianzas comerciales",
+    d20:"Abr 2006 – Ene 2007",r20:"Ingeniero Cartógrafo | Geoprocesamiento y Teledetección",
+    e20_1:"Cartografía temática, teledetección, geoprocesamiento, análisis espacial y datos geográficos",
+    e20_2:"Producción, organización y estructuración de bases cartográficas y mapas técnicos",
+    e20_3:"Control de calidad, validación y normalización de productos cartográficos",
+    edu_label:"Formación",edu_title:"Educación y Certificaciones",
+    deg1:"Ingeniería Cartográfica",deg2:"MBA en Machine Learning in Production",
+    deg3:"MBA en Tecnología, Información e Innovación para Negocios",deg4:"Posgrado en Inteligencia Artificial",
+    deg5:"Posgrado en Inteligencia Artificial",deg6:"Posgrado en Ciencia de Datos",
+    deg7:"Posgrado en Tecnología Java",deg8:"Posgrado en Deep Learning",
+    c_fiap1:"Inteligencia Artificial",c_fiap2:"Big Data y Analytics",c_fiap3:"DevOps & Agile Culture",c_fiap4:"Cloud Fundamentals",c_fiap5:"Design Thinking",
+    c_puc1:"Arquitectura de Microservicios",c_puc2:"Desarrollo Full Stack",c_puc3:"Ingeniería de Datos",
+    c_enap1:"Ciencia de Datos",c_enap2:"Machine Learning",c_enap3:"Gestión de Proyectos",c_enap4:"Gestión de Riesgos",c_enap5:"Business Intelligence",
+    lang_label:"Idiomas",lang_pt:"Portugués",lang_pt_level:"Nativo",lang_en:"Inglés",lang_en_level:"Intermedio",
+    lang_es:"Español",lang_es_level:"Intermedio",lang_fr:"Francés",lang_fr_level:"Intermedio",
+    contact_label:"Contacto",contact_title:"Hablemos",
+    c_phone_label:"Teléfono / WhatsApp",c_email_label:"Correo electrónico",c_location_label:"Ubicación",c_location_value:"Governador Celso Ramos, SC, Brasil",
+    footer_text:"© 2026 Flávio Antonio Oliveira da Silva · Ingeniero Cartógrafo · Especialista en IA y Geotecnologías"
+  }
+};
+
+function applyLang(l){
+  if(!S[l])return;
+  const s=S[l];
+  document.querySelectorAll('[data-i]').forEach(el=>{
+    const k=el.getAttribute('data-i');
+    if(s[k]!==undefined)el.textContent=s[k];
+  });
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+  try{localStorage.setItem('cv_lang',l);}catch(e){}
+}
+
+document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+try{const sv=localStorage.getItem('cv_lang');if(sv&&S[sv])applyLang(sv);}catch(e){}
+// Rotating titles
+const rotatingTitles={
+  pt:['Inteligência Artificial','Machine Learning & Deep Learning','IA Generativa & LLMs','Visão Computacional','GeoAI & Geotecnologias','Engenharia de Dados','MLOps & Pipelines','Liderança Técnica'],
+  en:['Artificial Intelligence','Machine Learning & Deep Learning','Generative AI & LLMs','Computer Vision','GeoAI & Geotechnologies','Data Engineering','MLOps & Pipelines','Technical Leadership'],
+  es:['Inteligencia Artificial','Machine Learning & Deep Learning','IA Generativa & LLMs','Visión por Computadora','GeoIA & Geotecnologías','Ingeniería de Datos','MLOps & Pipelines','Liderazgo Técnico']
+};
+let rtIdx=0;
+const rtEl=document.getElementById('rotatingTitle');
+function rotateTitle(){
+  if(!rtEl)return;
+  rtEl.classList.add('fade');
+  setTimeout(()=>{
+    rtIdx=(rtIdx+1)%rotatingTitles.pt.length;
+    const lang=document.querySelector('.lang-btn.active')?.dataset?.lang||'pt';
+    rtEl.textContent=(rotatingTitles[lang]||rotatingTitles.pt)[rtIdx];
+    rtEl.classList.remove('fade');
+  },320);
+}
+setInterval(rotateTitle,2800);
+
+// Theme toggle
+const themeBtn=document.getElementById('themeToggle');
+const root=document.documentElement;
+function setTheme(t){root.setAttribute('data-theme',t);themeBtn.textContent=t==='dark'?'☀':'🌙';try{localStorage.setItem('cv_theme',t);}catch(e){}}
+themeBtn.addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+try{const st=localStorage.getItem('cv_theme');if(st)setTheme(st);}catch(e){}
+
+// Hamburger menu
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
+</script>
